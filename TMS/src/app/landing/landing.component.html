@@ -1,0 +1,74 @@
+<app-navbar [isLandingComponent]="true"></app-navbar>
+<div class="container">
+
+    <!-- Impression section -->
+    <div class="impression" [style.backgroundImage]="'url(' + ImagePath + ')'" style="background-size: cover;">
+        <div class="company" style="color: white; font-size: 70px;">
+            XPLORA TOURS  <br><span style="font-style: italic; color: black; font-size: 30px;"></span> 
+        </div>
+    </div>
+
+    <!-- popular destination section -->
+    <h1 style="text-align: center;font-style: italic;margin: 10px 0px; font-size:40px;">Popular Destinations</h1>
+    <div class="popularDestination">
+        <div class="mainPopular" [style.backgroundImage]="'url(' + maindestinationImagePath + ')'" style="background-size: cover;">
+
+        </div>
+        <div class="minorPopular">
+            <div class="miniPopular" [style.backgroundImage]="'url(' + minordestinationImagePath + ')'" style="background-size: cover;">
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- recommended packages -->
+    <h1 style="text-align: center;font-style: italic;margin: 10px 0px;">Recommended Packages</h1>
+    <div class="recommendedPackages">
+        <div class="minorRecommended" >
+            <div class="miniRecommended" [style.backgroundImage]="'url(' + recommendedImagePath + ')'" style="background-size: cover;">
+                <div class="recommendedDetails">
+                    <div class="p">Details</div>
+                <button>More Info</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- special offers -->
+    <h1 style="text-align: center;font-style: italic;margin: 10px 0px;">Special Offers</h1>
+    <div class="specialOffers">
+        <div class="minorSpecial">
+            <div class="miniSpecial" [style.backgroundImage]="'url(' + specialminorImagePath + ')'" style="background-size: cover;">
+
+            </div>
+
+        </div>
+        <div class="mainSpecial" [style.backgroundImage]="'url(' + specialmainImagePath + ')'" style="background-size: cover;">
+
+        </div>
+     
+    </div>
+
+    <!-- international section -->
+    <h1 style="text-align: center;font-style: italic;margin: 10px 0px;">International Destination</h1>
+    <h4 style="margin: 5px;color: gray;font-style: italic;">Visit your Favourite International Destination</h4>
+    <div class="internationalDestination">
+        <div class="minorInternational">
+            <div class="miniInternational" [style.backgroundImage]="'url(' + internationalImagePath + ')'" style="background-size: cover;">
+                <div class="internationalDetails">
+                    <div class="p">Details</div>
+                <button>More Info</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- contact section -->
+  <app-footer id="footer"></app-footer>
+
+</div>
+
+

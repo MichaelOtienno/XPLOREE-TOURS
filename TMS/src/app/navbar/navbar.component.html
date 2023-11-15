@@ -1,0 +1,21 @@
+<div class="nav">
+    <div class="date">
+
+
+        <div class="logo">
+            <marquee  width="70%" behavior="alternate" loop="5">Xplora Tours</marquee>
+
+        </div>
+
+    </div>
+    <div class="about">
+        <a routerLink="/landing">Home</a>
+        <a style="cursor: pointer;" *ngIf="isLandingComponent" (click)="scrollToFooter()">About</a>
+        <a routerLink="/services">Services</a>
+    </div>
+    <div class="accountIcon">
+        <a *ngIf="isUserLoggedIn && isLoginPage" routerLink="/signup">Signup</a>
+        <a *ngIf="isUserLoggedIn && !isLoginPage" routerLink="/signin">Logout</a>
+    </div>
+</div>
+

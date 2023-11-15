@@ -1,0 +1,27 @@
+
+### Create Tour
+POST http://localhost:4300/tour/createTour
+Content-Type: application/json
+
+{
+    "tourName": "Amazing Adventure",
+    "tourHighlights": "Scenic views, hiking, water adventures",
+    "tourDescription": "Explore breathtaking landscapes and exciting activities.",
+    "startDate": "2023-12-01",
+    "endDate": "2023-12-10",
+    "tourHighlights": "Scenic views, hiking, water adventures",
+    "tourPrice": 500,
+    "tourHost": "Adventure Tours Inc.",
+    "tourLocation": "Nature Paradise",
+    "tourDuration": "10 days",
+    "tourCategory": "Adventure",
+    "tourImage": "tour_image_url.jpg",
+    "tourContact": "adventure@example.com",
+    "pickupLocation": "City Center",
+    "pickupTime": "08:00 AM",
+    "dropoffLocation": "City Center",
+    "dropoffTime": "06:00 PM"
+}
+
+### Get All Tours
+GET http://localhost:4300/tour/
