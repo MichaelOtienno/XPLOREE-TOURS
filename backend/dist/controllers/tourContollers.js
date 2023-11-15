@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateProject = exports.getAllTours = exports.createTour = void 0;
+exports.deleteTour = exports.updateTour = exports.getAllTours = exports.createTour = void 0;
 const uuid_1 = require("uuid");
 const mssql_1 = __importDefault(require("mssql"));
 const sqlConfig_1 = require("../config/sqlConfig");
@@ -85,7 +85,7 @@ const getAllTours = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getAllTours = getAllTours;
 //update tour
-const updateProject = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const updateTour = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let { tourID, tourName, tourDescription, startDate, endDate, tourHighlights, tourPrice, tourHost, tourLocation, tourDuration, tourCategory, tourImage, tourContact, pickupLocation, pickupTime, dropoffLocation, dropoffTime } = req.body;
         const { error } = tourValidators_1.tourUpdateValidationSchema.validate(req.body);
@@ -133,4 +133,37 @@ const updateProject = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
     }
 });
-exports.updateProject = updateProject;
+exports.updateTour = updateTour;
+//delete tour
+//delete Project
+const deleteTour = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { tourID } = req.body;
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        const result = yield pool.request()
+            .input("tourID", mssql_1.default.VarChar, tourID)
+            .execute("deleteTour");
+        if (result.recordset[0].DeletionResult === 1) {
+            return res.status(200).json({
+                message: "Tour deleted successfully"
+            });
+        }
+        else if (result.recordset[0].DeletionResult === -2) {
+            return res.status(404).json({
+                message: "Tour is not 'completed'"
+            });
+        }
+        else {
+            return res.status(500).json({
+                message: "Failed to delete tour"
+            });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: "Internal server error."
+        });
+    }
+});
+exports.deleteTour = deleteTour;

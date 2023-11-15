@@ -6,6 +6,7 @@ CREATE OR ALTER PROCEDURE updateTour
     @tourID VARCHAR(300),
     @tourName VARCHAR(250),
     @tourDescription VARCHAR(500),
+    @startDate DATE,
     @endDate DATE,
     @tourHighlights VARCHAR(500),
     @tourPrice INT,
@@ -33,9 +34,10 @@ BEGIN
         BEGIN
             
             UPDATE Tours
-            SET
+            SET 
                 tourName = @tourName,
                 tourDescription = @tourDescription,
+                startDate = @startDate,
                 endDate = @endDate,
                 tourHighlights = @tourHighlights,
                 tourPrice = @tourPrice,

@@ -1,12 +1,13 @@
 import Router from "express";
-import { createTour, getAllTours } from "../controllers/tourContollers";
+import { createTour, deleteTour, getAllTours, updateTour } from "../controllers/tourContollers";
 
 
 const tour_router = Router()
 
 tour_router.post('/createTour',createTour)
-tour_router.get('/',getAllTours)
-// project_router.delete('/deleteProject',deleteProject)
+tour_router.get('/',getAllTours),
+tour_router.post('/updateTour',updateTour)
+tour_router.delete('/deleteTour',deleteTour)
 // project_router.get('/',getAllProjects)
 // project_router.get('/singleProject',singleProject)
 // project_router.post('/updateProject',projectCompleted)

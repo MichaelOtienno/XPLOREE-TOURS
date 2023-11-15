@@ -25,3 +25,42 @@ Content-Type: application/json
 
 ### Get All Tours
 GET http://localhost:4300/tour/
+
+
+
+### update tour
+
+POST http://localhost:4300/tour/updateTour
+Content-Type: application/json
+
+{   
+    "tourID":"457adc1f-2e61-4899-bfc0-0c89bae2ac49",
+    "tourName": "Amazing Adventure",
+    "tourHighlights": "Scenic views, hiking, water adventures",
+    "tourDescription": "Explore breathtaking landscapes and exciting activities.",
+    "startDate": "2023-12-01",
+    "endDate": "2023-12-10",
+    "tourHighlights": "Scenic views, hiking, water adventures",
+    "tourPrice": 500,
+    "tourHost": "Adventure Tours Inc.",
+    "tourLocation": "Nature Paradise",
+    "tourDuration": "10 days",
+    "tourCategory": "Adventure",
+    "tourImage": "tour_image_url.jpg",
+    "tourContact": "adventure@example.com",
+    "pickupLocation": "City Center",
+    "pickupTime": "08:00 AM",
+    "dropoffLocation": "City Center",
+    "dropoffTime": "06:00 PM"
+}
+
+###delete tour
+DELETE  http://localhost:4300/tour/deleteTour
+Content-Type: application/json
+
+{   
+    "tourID":"457adc1f-2e61-4899-bfc0-0c89bae2ac49"
+  
+}
+
+

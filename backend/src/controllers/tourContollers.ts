@@ -83,7 +83,7 @@ export const getAllTours = async (req: Request, res: Response) => {
 }
 
 //update tour
-export const updateProject = async (req: Request, res: Response) => {
+export const updateTour = async (req: Request, res: Response) => {
     try {
         let { tourID,tourName, tourDescription, startDate, endDate, tourHighlights, tourPrice, tourHost, tourLocation,
             tourDuration, tourCategory, tourImage, tourContact, pickupLocation, pickupTime,
@@ -132,6 +132,40 @@ export const updateProject = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(500).json({
             message: error
+        });
+    }
+}
+
+//delete tour
+
+//delete Project
+export const deleteTour = async (req: Request, res: Response) => {
+    try {
+        const { tourID } = req.body;
+
+        const pool = await mssql.connect(sqlConfig);
+        const result = await pool.request()
+            .input("tourID", mssql.VarChar, tourID)
+            .execute("deleteTour");
+
+        if (result.recordset[0].DeletionResult === 1) {
+            return res.status(200).json({
+                message: "Tour deleted successfully"
+            });
+        } else if (result.recordset[0].DeletionResult === -2) {
+            return res.status(404).json({
+                message: "Tour is not 'completed'"
+            });
+        } else {
+            return res.status(500).json({
+                message: "Failed to delete tour"
+            });
+        }
+
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: "Internal server error."
         });
     }
 }
