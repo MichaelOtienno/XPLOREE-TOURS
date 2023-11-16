@@ -1,29 +1,30 @@
 create DATABASE tourManagementSystem
 use tourManagementSystem
 select * from Tours
-CREATE TABLE Tours (
-    tourID VARCHAR(300) PRIMARY KEY,
-    tourName VARCHAR(250),
-    tourHighlights VARCHAR(500),
-    tourHost VARCHAR(250),
-    tourDescription VARCHAR(500),
-    tourPrice INT,
-    tourLocation VARCHAR(250),
-    tourDuration VARCHAR(250),
-    tourImage VARCHAR(250),
-    tourStatus VARCHAR(250) DEFAULT 'pending',
-    createdDateTime DATETIME DEFAULT GETDATE(),
-    startDate DATE,
-    endDate DATE,
-    isCompleted BIT DEFAULT 0,
-    tourContact VARCHAR(250),
-    tourCategory VARCHAR(250),
-    pickupLocation VARCHAR(250),
-    pickupTime TIME,
-    dropoffLocation VARCHAR(250),
-    dropoffTime TIME,
+select * from Users
+-- CREATE TABLE Tours (
+--     tourID VARCHAR(300) PRIMARY KEY,
+--     tourName VARCHAR(250),
+--     tourHighlights VARCHAR(500),
+--     tourHost VARCHAR(250),
+--     tourDescription VARCHAR(500),
+--     tourPrice INT,
+--     tourLocation VARCHAR(250),
+--     tourDuration VARCHAR(250),
+--     tourImage VARCHAR(250),
+--     tourStatus VARCHAR(250) DEFAULT 'pending',
+--     createdDateTime DATETIME DEFAULT GETDATE(),
+--     startDate DATE,
+--     endDate DATE,
+--     isCompleted BIT DEFAULT 0,
+--     tourContact VARCHAR(250),
+--     tourCategory VARCHAR(250),
+--     pickupLocation VARCHAR(250),
+--     pickupTime TIME,
+--     dropoffLocation VARCHAR(250),
+--     dropoffTime TIME,
 
-)
+-- )
 alter TABLE Tours 
 add pickupTime TIME, dropoffTime TIME
 

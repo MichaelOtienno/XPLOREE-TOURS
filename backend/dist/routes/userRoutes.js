@@ -11,4 +11,6 @@ const user_router = (0, express_1.default)();
 user_router.post('/register', userControllers_1.registerUser);
 user_router.post('/login', userControllers_1.loginUser);
 user_router.get('/check_user_details', tokenVerify_1.verifyToken, userControllers_1.checkUserDetails);
+user_router.post('/sendReview', userControllers_1.sendReview);
+user_router.get('/allReviews', userControllers_1.getAllReviews);
 exports.default = user_router;

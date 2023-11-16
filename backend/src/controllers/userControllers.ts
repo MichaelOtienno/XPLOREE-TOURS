@@ -126,3 +126,52 @@ export const checkUserDetails = async (req:ExtendedUser, res:Response)=>{
         })
     }
 }
+
+
+// sendReview
+export const sendReview = async (req: Request, res: Response) => {
+    let { email, review } = req.body;
+
+    try {
+        const pool = await mssql.connect(sqlConfig);
+
+        // Execute the stored procedure without checking if the user exists
+        await pool
+            .request()
+            .input('email', mssql.VarChar, email)
+            .input('review', mssql.VarChar, review)
+            .execute('sendReview');
+
+        // Assuming the procedure execution completes without errors
+        return res.status(200).json({
+            message: 'Review updated successfully',
+        });
+    } catch (error) {
+        console.error('Error in sendReview:', error); // Log the detailed error
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+};
+
+
+// fetch reviews
+export const getAllReviews = async (req: Request, res: Response) => {
+    try {
+        const pool = await mssql.connect(sqlConfig);
+        const result = await pool
+            .request()
+            .execute('getReviews');
+
+        if (result.recordset && result.recordset.length > 0) {
+            const reviews = result.recordset;
+            return res.status(200).json(reviews);
+        } else {
+            return res.status(200).json([]);
+        }
+    } catch (error) {
+        console.error('Error fetching reviews:', error);
+        return res.status(500).json({
+            message: 'Internal Server Error',
+        });
+    }
+};
+

@@ -23,7 +23,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkUserDetails = exports.loginUser = exports.registerUser = void 0;
+exports.getAllReviews = exports.sendReview = exports.checkUserDetails = exports.loginUser = exports.registerUser = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -132,3 +132,48 @@ const checkUserDetails = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.checkUserDetails = checkUserDetails;
+// sendReview
+const sendReview = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    let { email, review } = req.body;
+    try {
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        // Execute the stored procedure without checking if the user exists
+        yield pool
+            .request()
+            .input('email', mssql_1.default.VarChar, email)
+            .input('review', mssql_1.default.VarChar, review)
+            .execute('sendReview');
+        // Assuming the procedure execution completes without errors
+        return res.status(200).json({
+            message: 'Review updated successfully',
+        });
+    }
+    catch (error) {
+        console.error('Error in sendReview:', error); // Log the detailed error
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+exports.sendReview = sendReview;
+// fetch reviews
+const getAllReviews = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        const result = yield pool
+            .request()
+            .execute('getReviews');
+        if (result.recordset && result.recordset.length > 0) {
+            const reviews = result.recordset;
+            return res.status(200).json(reviews);
+        }
+        else {
+            return res.status(200).json([]);
+        }
+    }
+    catch (error) {
+        console.error('Error fetching reviews:', error);
+        return res.status(500).json({
+            message: 'Internal Server Error',
+        });
+    }
+});
+exports.getAllReviews = getAllReviews;

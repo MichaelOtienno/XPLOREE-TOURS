@@ -64,3 +64,22 @@ Content-Type: application/json
 }
 
 
+
+### sendReview
+
+POST http://localhost:4300/user/sendReview
+Content-Type: application/json
+
+{   
+    "email":"eucs@gmail.com",
+    "review": "truly amazing"
+  
+}
+
+### get all reviews
+GET http://localhost:4300/user/allReviews
+Content-Type: application/json
+
+
+
+
